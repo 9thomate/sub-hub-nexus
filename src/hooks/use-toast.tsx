@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -57,6 +58,9 @@ interface State {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
+// Create a dispatch function that will be set later
+let dispatchToasts: React.Dispatch<Action> | undefined = undefined;
+
 const addToRemoveQueue = (toastId: string) => {
   if (toastTimeouts.has(toastId)) {
     return
@@ -64,10 +68,12 @@ const addToRemoveQueue = (toastId: string) => {
 
   const timeout = setTimeout(() => {
     toastTimeouts.delete(toastId)
-    dispatch({
-      type: "REMOVE_TOAST",
-      toastId: toastId,
-    })
+    if (dispatchToasts) {
+      dispatchToasts({
+        type: "REMOVE_TOAST",
+        toastId: toastId,
+      })
+    }
   }, TOAST_REMOVE_DELAY)
 
   toastTimeouts.set(toastId, timeout)
@@ -138,6 +144,14 @@ const ToastContext = React.createContext<{
 // Create a Provider component
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = React.useReducer(reducer, { toasts: [] });
+  
+  // Set the dispatch function when the component mounts
+  React.useEffect(() => {
+    dispatchToasts = dispatch;
+    return () => {
+      dispatchToasts = undefined;
+    };
+  }, []);
 
   const toast = React.useCallback((props: Omit<ToasterToast, "id">) => {
     const id = genId();
