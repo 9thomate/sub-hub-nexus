@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Navbar } from '@/components/Navbar';
 import { SidebarProvider } from '@/components/ui/sidebar';
@@ -8,13 +8,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-  };
 
   useEffect(() => {
     console.error(
@@ -24,11 +18,11 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className={`min-h-screen flex ${isDarkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen flex">
       <SidebarProvider>
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-          <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <Navbar />
           
           <main className="flex-1 flex items-center justify-center">
             <div className="text-center">

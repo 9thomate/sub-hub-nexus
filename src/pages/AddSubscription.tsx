@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Navbar } from '@/components/Navbar';
@@ -47,15 +46,9 @@ const services = [
 ];
 
 const AddSubscription = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,11 +59,11 @@ const AddSubscription = () => {
   };
 
   return (
-    <div className={`min-h-screen flex ${isDarkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen flex">
       <SidebarProvider>
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-          <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <Navbar />
           
           <main className="flex-1 overflow-auto p-4 md:p-6">
             <div className="flex flex-col gap-6 max-w-3xl mx-auto">

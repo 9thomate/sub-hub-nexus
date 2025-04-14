@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Navbar } from '@/components/Navbar';
@@ -7,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { 
   ArrowRight, 
@@ -21,7 +19,6 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Mock chat data
 const chatList = [
   {
     id: 1,
@@ -100,15 +97,9 @@ const messages = [
 ];
 
 const Messages = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedChat, setSelectedChat] = useState(chatList[0]);
   const [messageInput, setMessageInput] = useState('');
   const { toast } = useToast();
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-  };
 
   const handleSendMessage = () => {
     if (messageInput.trim().length === 0) return;
@@ -122,11 +113,11 @@ const Messages = () => {
   };
 
   return (
-    <div className={`min-h-screen flex ${isDarkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen flex">
       <SidebarProvider>
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-          <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <Navbar />
           
           <main className="flex-1 flex overflow-hidden">
             {/* Chat list sidebar */}

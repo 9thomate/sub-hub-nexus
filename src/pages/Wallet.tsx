@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Navbar } from '@/components/Navbar';
 import { SidebarProvider } from '@/components/ui/sidebar';
@@ -25,13 +24,7 @@ const transactionHistory = [
 ];
 
 const Wallet = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const { toast } = useToast();
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-  };
 
   const handleAddFunds = () => {
     toast({
@@ -48,11 +41,11 @@ const Wallet = () => {
   };
 
   return (
-    <div className={`min-h-screen flex ${isDarkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen flex">
       <SidebarProvider>
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-          <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <Navbar />
           
           <main className="flex-1 overflow-auto p-4 md:p-6">
             <div className="flex flex-col gap-6 max-w-5xl mx-auto">
