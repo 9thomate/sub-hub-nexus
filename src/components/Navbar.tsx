@@ -8,15 +8,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from '@/hooks/use-theme';
 
-interface NavbarProps {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-}
+interface NavbarProps {}
 
-export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const isMobile = useIsMobile();
   const { toast } = useToast();
+  const { theme, toggleTheme } = useTheme();
+  const isDarkMode = theme === "dark";
 
   const handleNotificationClick = () => {
     toast({
@@ -45,8 +45,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode }) =>
         <Button 
           variant="ghost" 
           size="icon" 
-          onClick={toggleDarkMode} 
+          onClick={toggleTheme} 
           className="rounded-full"
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>

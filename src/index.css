@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,31 +5,31 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 33%; /* #475462 charcoal */
+    --foreground: 220 20% 23%; /* Darkened for better contrast (#343e4e) */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 33%; /* #475462 charcoal */
+    --card-foreground: 220 20% 23%; /* Darkened for better contrast */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 33%; /* #475462 charcoal */
+    --popover-foreground: 220 20% 23%; /* Darkened for better contrast */
 
     --primary: 0 27% 37%; /* #794342 burgundy */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 22% 69%; /* #cd8f8f roseDust */
+    --secondary: 0 22% 59%; /* Darkened roseDust for better contrast */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 56%; /* #768fa7 steelBlue */
+    --muted: 210 20% 46%; /* Darkened steelBlue for better contrast */
     --muted-foreground: 0 0% 100%;
 
-    --accent: 220 4% 73%; /* #b8babc silver */
-    --accent-foreground: 220 20% 33%; /* #475462 charcoal */
+    --accent: 220 4% 63%; /* Darkened silver for better contrast */
+    --accent-foreground: 220 20% 23%; /* Darkened for better contrast */
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 50.2%; /* Darkened for better contrast */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 0 0% 80%; /* Darkened border for better contrast */
+    --input: 0 0% 80%; /* Darkened input for better contrast */
     --ring: 0 27% 37%; /* #794342 burgundy */
 
     --radius: 0.75rem;
@@ -93,6 +92,14 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+  
+  p, li, span {
+    @apply text-foreground;
   }
 }
 
