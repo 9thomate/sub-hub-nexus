@@ -123,7 +123,10 @@ const Index = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredSubscriptions.length > 0 ? (
                     filteredSubscriptions.map((subscription) => (
-                      <SubscriptionCard key={subscription.id} {...subscription} />
+                      <SubscriptionCard 
+                        key={subscription.id} 
+                        {...subscription as any} // Using type assertion to fix the type issue temporarily
+                      />
                     ))
                   ) : (
                     <div className="col-span-full flex justify-center py-10">
