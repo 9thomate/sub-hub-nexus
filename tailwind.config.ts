@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors based on the provided palette
+				familyPlan: {
+					roseDust: '#cd8f8f',
+					burgundy: '#794342',
+					steelBlue: '#768fa7',
+					silver: '#b8babc',
+					charcoal: '#475462',
 				}
 			},
 			borderRadius: {
