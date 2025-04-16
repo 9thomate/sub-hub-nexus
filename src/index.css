@@ -11,15 +11,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 23%; /* Darkened for better contrast */
     --primary: 0 27% 37%; /* #794342 burgundy */
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 0 0% 100%; /* White text on primary colored backgrounds */
     --secondary: 0 22% 59%; /* Darkened roseDust for better contrast */
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 0 0% 100%; /* White text on secondary colored backgrounds */
     --muted: 210 20% 46%; /* Darkened steelBlue for better contrast */
-    --muted-foreground: 220 10% 45%; /* Slightly lighter gray for secondary text */
+    --muted-foreground: 220 10% 45%; /* Gray text for subtle elements */
     --accent: 220 4% 63%; /* Darkened silver for better contrast */
-    --accent-foreground: 220 20% 23%; /* Darkened for better contrast */
+    --accent-foreground: 0 0% 100%; /* White text on accent colored backgrounds */
     --destructive: 0 84.2% 50.2%; /* Darkened for better contrast */
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%; /* White text on destructive colored backgrounds */
     --border: 0 0% 80%; /* Darkened border for better contrast */
     --input: 0 0% 80%; /* Darkened input for better contrast */
     --ring: 0 27% 37%; /* #794342 burgundy */
@@ -77,11 +77,11 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight;
+    @apply font-medium tracking-tight text-gray-900 dark:text-white;
   }
   
   p, li, span {
-    @apply text-foreground;
+    @apply text-gray-700 dark:text-gray-200;
   }
 }
 
@@ -105,10 +105,18 @@
   }
 
   .card-title {
-    @apply text-gray-800 dark:text-white;
+    @apply text-gray-900 dark:text-white;
   }
 
   .card-description {
-    @apply text-gray-600 dark:text-gray-300;
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .text-on-primary {
+    @apply text-white;
+  }
+
+  .text-on-color {
+    @apply text-white;
   }
 }
