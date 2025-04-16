@@ -9,7 +9,8 @@ import {
   SidebarMenu, 
   SidebarMenuItem, 
   SidebarMenuButton,
-  SidebarTrigger
+  SidebarTrigger,
+  useSidebar
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { 
@@ -20,7 +21,8 @@ import {
   User, 
   Settings, 
   LogOut, 
-  HelpCircle
+  HelpCircle,
+  Menu
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,8 +37,9 @@ const SidebarItem = ({ icon: Icon, label, path, isActive }: SidebarItemProps) =>
   return (
     <SidebarMenuItem>
       <SidebarMenuButton asChild className={cn(
-        "flex items-center gap-2 px-3 py-2 rounded-md w-full hover:bg-sidebar-accent group", 
-        isActive && "bg-sidebar-accent text-sidebar-accent-foreground"
+        "flex items-center gap-2 px-3 py-2 rounded-md w-full transition-colors duration-200",
+        "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        isActive && "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
       )}>
         <a href={path}>
           <Icon className="h-5 w-5" />
@@ -49,6 +52,7 @@ const SidebarItem = ({ icon: Icon, label, path, isActive }: SidebarItemProps) =>
 
 export const AppSidebar = () => {
   const isMobile = useIsMobile();
+  const { toggleSidebar } = useSidebar();
   const pathname = window.location.pathname;
   
   return (
@@ -56,17 +60,19 @@ export const AppSidebar = () => {
       <div className="flex h-16 items-center px-4 border-b border-sidebar-border">
         <div className="flex items-center gap-2 text-sidebar-foreground font-semibold text-xl">
           <img src="/lovable-uploads/4e03ca55-ab04-4172-9cbb-f06c3014cef1.png" alt="Logo" className="h-8 w-8 rounded-full" />
-          <span>Family Plan</span>
+          <span className="text-sidebar-foreground">Family Plan</span>
         </div>
-        {isMobile && (
-          <div className="ml-auto">
-            <SidebarTrigger />
-          </div>
-        )}
+        <button
+          onClick={toggleSidebar}
+          className="ml-auto p-2 rounded-md hover:bg-sidebar-accent text-sidebar-foreground"
+          aria-label="Toggle Sidebar"
+        >
+          <Menu size={20} />
+        </button>
       </div>
       <SidebarContent className="p-2">
         <SidebarGroup>
-          <SidebarGroupLabel>Main</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-sidebar-foreground/70">Main</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarItem icon={Home} label="Dashboard" path="/" isActive={pathname === '/'} />
@@ -78,7 +84,7 @@ export const AppSidebar = () => {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-sidebar-foreground/70">Account</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarItem icon={User} label="Profile" path="/profile" isActive={pathname === '/profile'} />

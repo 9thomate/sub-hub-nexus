@@ -25,14 +25,14 @@
     --ring: 0 27% 37%; /* #794342 burgundy */
     --radius: 0.75rem;
 
-    /* Sidebar colors */
-    --sidebar-background: 220 20% 33%; /* #475462 charcoal */
-    --sidebar-foreground: 0 0% 98%;
+    /* Sidebar colors - updated for better contrast */
+    --sidebar-background: 220 20% 23%; /* Darker charcoal for better text contrast */
+    --sidebar-foreground: 0 0% 100%; /* Pure white text for maximum visibility */
     --sidebar-primary: 0 27% 37%; /* #794342 burgundy */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 22% 69%; /* #cd8f8f roseDust */
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 20%;
+    --sidebar-border: 220 20% 18%; /* Darker border for better definition */
     --sidebar-ring: 0 27% 37%; /* #794342 burgundy */
   }
 
@@ -118,5 +118,19 @@
 
   .text-on-color {
     @apply text-white;
+  }
+
+  /* Add smooth transition for sidebar */
+  [data-sidebar="sidebar"] {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Improve text visibility in sidebar */
+  [data-sidebar="menu-button"] {
+    @apply transition-colors duration-200;
+  }
+
+  [data-sidebar="group-label"] {
+    @apply text-sidebar-foreground/70 font-medium;
   }
 }
