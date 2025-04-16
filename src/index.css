@@ -5,33 +5,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 23%; /* Darkened for better contrast (#343e4e) */
-
+    --foreground: 220 20% 23%; /* Dark charcoal for primary text */
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 23%; /* Darkened for better contrast */
-
+    --card-foreground: 220 20% 23%; /* Dark charcoal for card text */
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 23%; /* Darkened for better contrast */
-
     --primary: 0 27% 37%; /* #794342 burgundy */
-    --primary-foreground: 0 0% 98%;
-
+    --primary-foreground: 0 0% 100%;
     --secondary: 0 22% 59%; /* Darkened roseDust for better contrast */
     --secondary-foreground: 0 0% 100%;
-
     --muted: 210 20% 46%; /* Darkened steelBlue for better contrast */
-    --muted-foreground: 0 0% 100%;
-
+    --muted-foreground: 220 10% 45%; /* Slightly lighter gray for secondary text */
     --accent: 220 4% 63%; /* Darkened silver for better contrast */
     --accent-foreground: 220 20% 23%; /* Darkened for better contrast */
-
     --destructive: 0 84.2% 50.2%; /* Darkened for better contrast */
     --destructive-foreground: 0 0% 98%;
-
     --border: 0 0% 80%; /* Darkened border for better contrast */
     --input: 0 0% 80%; /* Darkened input for better contrast */
     --ring: 0 27% 37%; /* #794342 burgundy */
-
     --radius: 0.75rem;
 
     /* Sidebar colors */
@@ -48,32 +39,23 @@
   .dark {
     --background: 220 20% 13%; /* darker charcoal */
     --foreground: 0 0% 98%;
-
     --card: 220 20% 18%; /* dark charcoal */
     --card-foreground: 0 0% 98%;
-
     --popover: 220 20% 18%; /* dark charcoal */
     --popover-foreground: 0 0% 98%;
-
     --primary: 0 27% 37%; /* #794342 burgundy */
     --primary-foreground: 0 0% 98%;
-
     --secondary: 0 22% 49%; /* darker roseDust */
     --secondary-foreground: 0 0% 98%;
-
     --muted: 210 20% 36%; /* darker steelBlue */
     --muted-foreground: 0 0% 80%;
-
     --accent: 220 4% 53%; /* darker silver */
     --accent-foreground: 0 0% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
     --border: 0 0% 30%;
     --input: 0 0% 30%;
     --ring: 0 27% 47%; /* lighter burgundy */
-
     --sidebar-background: 220 20% 18%; /* darker charcoal */
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 0 27% 47%; /* lighter burgundy */
@@ -120,5 +102,13 @@
   
   .card-hover {
     @apply transition-all duration-300 hover:shadow-md hover:translate-y-[-2px];
+  }
+
+  .card-title {
+    @apply text-gray-800 dark:text-white;
+  }
+
+  .card-description {
+    @apply text-gray-600 dark:text-gray-300;
   }
 }
