@@ -133,4 +133,13 @@
   [data-sidebar="group-label"] {
     @apply text-sidebar-foreground/70 font-medium;
   }
+
+  /* Handle text visibility in collapsed state */
+  [data-state="collapsed"] [data-sidebar="menu-button"] span {
+    @apply opacity-0 w-0 overflow-hidden;
+  }
+
+  [data-state="expanded"] [data-sidebar="menu-button"] span {
+    @apply opacity-100 w-auto;
+  }
 }
