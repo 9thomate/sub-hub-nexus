@@ -120,12 +120,11 @@
     @apply text-white;
   }
 
-  /* Add smooth transition for sidebar */
+  /* Add responsive sidebar styles */
   [data-sidebar="sidebar"] {
     @apply transition-all duration-300 ease-in-out;
   }
 
-  /* Improve text visibility in sidebar */
   [data-sidebar="menu-button"] {
     @apply transition-colors duration-200;
   }
@@ -136,10 +135,17 @@
 
   /* Handle text visibility in collapsed state */
   [data-state="collapsed"] [data-sidebar="menu-button"] span {
-    @apply opacity-0 w-0 overflow-hidden;
+    @apply opacity-0 w-0 overflow-hidden md:transition-all md:duration-200;
   }
 
   [data-state="expanded"] [data-sidebar="menu-button"] span {
-    @apply opacity-100 w-auto;
+    @apply opacity-100 w-auto transition-all duration-200;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    [data-sidebar="sidebar"] {
+      @apply fixed inset-y-0 left-0;
+    }
   }
 }

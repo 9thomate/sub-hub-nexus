@@ -9,7 +9,6 @@ import {
   SidebarMenu, 
   SidebarMenuItem, 
   SidebarMenuButton,
-  SidebarTrigger,
   useSidebar
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -36,12 +35,13 @@ interface SidebarItemProps {
 const SidebarItem = ({ icon: Icon, label, path, isActive }: SidebarItemProps) => {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const isMobile = useIsMobile();
 
   return (
     <SidebarMenuItem>
       <SidebarMenuButton 
         asChild 
-        tooltip={isCollapsed ? label : undefined}
+        tooltip={!isMobile && isCollapsed ? label : undefined}
         className={cn(
           "flex items-center gap-2 px-3 py-2 rounded-md w-full transition-colors duration-200",
           "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -49,8 +49,8 @@ const SidebarItem = ({ icon: Icon, label, path, isActive }: SidebarItemProps) =>
         )}
       >
         <a href={path} className="flex items-center gap-2">
-          <Icon className="h-5 w-5" />
-          <span className="transition-all duration-200">{label}</span>
+          <Icon className="h-5 w-5 flex-shrink-0" />
+          <span className="transition-all duration-200 truncate">{label}</span>
         </a>
       </SidebarMenuButton>
     </SidebarMenuItem>
@@ -64,13 +64,21 @@ export const AppSidebar = () => {
   const isCollapsed = state === "collapsed";
   
   return (
-    <Sidebar variant="sidebar" collapsible="icon">
+    <Sidebar 
+      variant="sidebar" 
+      collapsible={isMobile ? "offcanvas" : "icon"}
+      className="z-50"
+    >
       <div className="flex h-16 items-center px-4 border-b border-sidebar-border">
-        <div className="flex items-center gap-2 text-sidebar-foreground font-semibold text-xl">
-          <img src="/lovable-uploads/4e03ca55-ab04-4172-9cbb-f06c3014cef1.png" alt="Logo" className="h-8 w-8 rounded-full" />
+        <div className="flex items-center gap-2 text-sidebar-foreground font-semibold text-xl min-w-0">
+          <img 
+            src="/lovable-uploads/4e03ca55-ab04-4172-9cbb-f06c3014cef1.png" 
+            alt="Logo" 
+            className="h-8 w-8 rounded-full flex-shrink-0" 
+          />
           <span className={cn(
-            "text-sidebar-foreground transition-all duration-200",
-            isCollapsed && "opacity-0"
+            "text-sidebar-foreground transition-all duration-200 truncate",
+            isCollapsed && !isMobile && "opacity-0 w-0"
           )}>
             Family Plan
           </span>
