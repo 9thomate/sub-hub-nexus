@@ -20,7 +20,8 @@ import {
   User, 
   Settings, 
   LogOut, 
-  HelpCircle 
+  HelpCircle,
+  Menu 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
